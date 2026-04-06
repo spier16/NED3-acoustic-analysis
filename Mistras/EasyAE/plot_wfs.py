@@ -13,7 +13,7 @@ Usage
 
 The script concatenates all waveform records into one continuous time-series
 and produces two figures:
-  1. Raw waveform (ADC counts vs time) — rendered as a min/max pixel envelope
+  1. Raw waveform (volts vs time) — rendered as a min/max pixel envelope
   2. Spectrogram (power in dB, frequency vs time) — computed at display resolution
 
 --max-freq, --vmin, --vmax are all optional. When omitted the full frequency
@@ -152,6 +152,10 @@ def main():
     sampling_frequency = float(sr)
     print(f"Sampling frequency: {sampling_frequency:.2f} Hz")
 
+    print('sample_rate_hz=', sr)
+    print('index\ttime_s\tsignal_v')
+    [print(f'{i}\t{t[i]:.9f}\t{raw[i]:.9f}') for i in range(min(10, len(raw)))]
+
     stem       = wfs_path.stem
     title_base = args.title or stem
     fig_dpi    = 150
@@ -175,7 +179,7 @@ def main():
     ax_wave.fill_between(t_bins, env_min, env_max,
                          color="steelblue", alpha=0.8, linewidth=0)
     ax_wave.set_xlabel("Time (s)", fontsize=label_size)
-    ax_wave.set_ylabel("ADC Counts", fontsize=label_size)
+    ax_wave.set_ylabel("Volts (V)", fontsize=label_size)
     ax_wave.set_title(f"Waveform — {title_base}", fontsize=16, pad=12)
     ax_wave.tick_params(axis="both", which="major", labelsize=tick_size)
     ax_wave.set_xlim(t[0], t[-1])

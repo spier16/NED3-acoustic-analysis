@@ -100,8 +100,11 @@ venv.bak/
 __pycache__/
 .vscode/
 MPD Analysis/example_MPD_data/
+*AEwin64 Users Manual/
+Mistras/EasyAE/old/
 
 *.pyc
 *.wfs
 *.mp4
 *.zip
+*.jupyter
