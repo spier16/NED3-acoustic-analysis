@@ -541,7 +541,7 @@ def load_continuous(path: str | Path,
             if start_offset:
                 raw = raw[start_offset:]
                 print(f"Applied AEwin64 stream start offset: {start_offset:,} samples")
-    t = (pretrigger_samples + np.arange(len(raw))) / sr
+    t = np.linspace(pretrigger_samples / sr, (pretrigger_samples + len(raw) - 1) / sr, len(raw))
 
     print(f"Concatenated file records: {len(raw):,} samples")
 

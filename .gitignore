@@ -108,3 +108,6 @@ Mistras/EasyAE/old/
 *.mp4
 *.zip
 *.jupyter
+
+AGENTS.md
+.jupyter_ystore.db
